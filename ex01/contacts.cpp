@@ -1,45 +1,87 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   contacts.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/13 20:20:26 by kmummadi          #+#    #+#             */
+/*   Updated: 2025/04/14 20:11:15 by kmummadi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "contacts.hpp"
 
-void contacts::fill_contact()
+// Constructor
+Contacts::Contacts(void)
 {
-  contacts::save_first_name();
-  contacts::save_last_name();
-  contacts::save_nickname();
-  contacts::save_phonenumber();
-  contacts::save_darkest_secret();
+  // std::cout << "<-- Created contact class --->" << std::endl;
+  return;
 }
 
-void contacts::save_first_name()
+// Destructor
+Contacts::~Contacts(void)
 {
-  std::cout << "First Name: ";
-  std::cin >> contacts::first_name;
-  std::cout << std::endl;
+  // std::cout << "<--- Destroyed contact class --->" << std::endl;
+  return;
 }
 
-void contacts::save_last_name()
+// Setter functions 
+
+void Contacts::save_first_name(std::string first_name)
 {
-  std::cout << "Last Name: ";
-  std::cin >> contacts::last_name;
-  std::cout << std::endl;
+  this->p_first_name = first_name;
+  return;
 }
 
-void contacts::save_nickname()
+void Contacts::save_last_name(std::string last_name)
 {
-  std::cout << "Nickname: ";
-  std::cin >> contacts::nickname;
-  std::cout << std::endl;
+  this->p_last_name = last_name;
+  return;
 }
 
-void contacts::save_phonenumber()
+void Contacts::save_nickname(std::string nickname)
 {
-  std::cout << "Phonenumber: ";
-  std::cin >> contacts::phone_number;
-  std::cout << std::endl;
+  this->p_nickname = nickname;
+  return;
 }
 
-void contacts::save_darkest_secret()
+void Contacts::save_phonenumber(std::string phonenumber)
 {
-  std::cout << "Darkest secret: ";
-  std::cin >> contacts::darkest_secret;
-  std::cout << std::endl;
+  this->p_phone_number = phonenumber;
+  return;
 }
+
+void Contacts::save_darkest_secret(std::string darkest_secret)
+{
+  this->p_darkest_secret = darkest_secret;
+  return;
+}
+
+// Getter functions
+
+std::string Contacts::get_first_name(void)
+{
+  return (p_first_name);
+}
+
+std::string Contacts::get_last_name(void)
+{
+  return (p_last_name);
+}
+
+std::string Contacts::get_nickname(void)
+{
+  return (p_nickname);
+}
+
+std::string Contacts::get_phonenumber(void)
+{
+  return (p_phone_number);
+}
+
+std::string Contacts::get_darkest_secret(void)
+{
+  return (p_darkest_secret);
+}
+
