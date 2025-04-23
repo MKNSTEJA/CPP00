@@ -15,14 +15,12 @@
 // Constructor
 Contacts::Contacts(void)
 {
-  // std::cout << "<-- Created contact class --->" << std::endl;
   return;
 }
 
 // Destructor
 Contacts::~Contacts(void)
 {
-  // std::cout << "<--- Destroyed contact class --->" << std::endl;
   return;
 }
 

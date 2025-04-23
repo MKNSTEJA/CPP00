@@ -1,40 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.hpp                                      :+:      :+:    :+:   */
+/*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/13 20:24:36 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/04/22 22:52:57 by kmummadi         ###   ########.fr       */
+/*   Created: 2025/04/22 22:45:01 by kmummadi          #+#    #+#             */
+/*   Updated: 2025/04/22 22:57:34 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <iostream>
-# include <string.h>
+# include "phonebook.hpp"
 # include "contacts.hpp"
 
-# ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+# ifndef UTILS_HPP
+# define UTILS_HPP
 
-class Phonebook
-{
-  private:
-    Contacts p_contact[8];
-    int p_index;
-    int p_all_filled;
-
-  public:
-    // Constructor
-    Phonebook();
-
-    // Destructor
-    ~Phonebook();
-
-    void add_contact();
-    void search_contact();
-    void print_contacts();
-    void exit_program();
-};
+std::string shorten_string(std::string str);
+void print_columns(void);
+std::string ask(std::string prompt);
+std::string check_phonenumber();
 
 # endif

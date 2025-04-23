@@ -3,7 +3,7 @@ CXX         := c++
 CXXFLAGS    := -Wall -Wextra -Werror -std=c++14
 OBJDIR      := obj
 
-SRCS        := main.cpp phonebook.cpp contacts.cpp
+SRCS        := main.cpp phonebook.cpp contacts.cpp utils.cpp
 OBJS        := $(SRCS:%.cpp=$(OBJDIR)/%.o)
 
 all: $(NAME)

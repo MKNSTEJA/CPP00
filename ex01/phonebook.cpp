@@ -6,22 +6,20 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 20:15:35 by kmummadi          #+#    #+#             */
-/*   Updated: 2025/04/15 09:00:30 by kmummadi         ###   ########.fr       */
+/*   Updated: 2025/04/23 01:59:11 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "phonebook.hpp"
 # include <cstring>
-#include <ostream>
-#include <string>
-
-std::string shorten_string(std::string str);
-void print_columns(void);
+# include <ostream>
+# include <string>
+# include "utils.hpp"
 
 // Constructor
 Phonebook::Phonebook()
 {
-  std::cout << "<--- Phonebook class created --->" << std::endl;
+  // std::cout << "<--- Phonebook class created --->" << std::endl;
   this->p_index = 0;
   this->p_all_filled = 0;
 }
@@ -29,7 +27,7 @@ Phonebook::Phonebook()
 // Destructor
 Phonebook::~Phonebook()
 {
-  std::cout << "<--- Phonebook class destroyed --->" << std::endl;
+  // std::cout << "<--- Phonebook class destroyed --->" << std::endl;
 }
 
 // Add contacts
@@ -39,20 +37,11 @@ void Phonebook::add_contact(void)
   std::string first_name, last_name, nickname, phonenumber, darkest_secret;
 
   // Get info from user
-  std::cout << "First name: ";
-  std::cin >> first_name;
-  
-  std::cout << "Last name: ";
-  std::cin >> last_name;
-
-  std::cout << "Nickname: ";
-  std::cin >> nickname;
-
-  std::cout << "Phone number: ";
-  std::cin >> phonenumber;
-
-  std::cout << "Darkest secret: ";
-  std::cin >> darkest_secret;
+  first_name = ask("\nFirst name: ");
+  last_name = ask("Last name: ");
+  nickname = ask("Nickname: ");
+  phonenumber = check_phonenumber();
+  darkest_secret = ask("Darkest secret: ");
 
   // Assign info to the respective contact
   p_contact[i].save_first_name(first_name);
@@ -69,6 +58,7 @@ void Phonebook::add_contact(void)
     this->p_all_filled = 1;
     this->p_index = 0;
   }
+  std::system("clear");
 }
 
 // Search contacts
@@ -77,27 +67,35 @@ void Phonebook::search_contact(void)
   std::string input;
   int index;
 
+  if(p_index == 0)
+  {
+    std::cout << "\n0 Contacts saved. Please add contacts first!\n";
+    return;
+  }
   while(1)
   {
     print_contacts();
-    std::cout << "Which one to be displayed? Index: ";
-    std::cin >> input;
-    if (input == "EXIT")
-      break;
-    index = std::stoi(input);
-    if(p_index < index)
+    input = ask("\nWhich one to be displayed? (\"q\" to exit)\nIndex: ");
+    if (input == "q")
     {
-      std::cout << "Invalid index. Please enter the right index number." << std::endl;
+      std::system("clear");
+      break;
+    }
+    if(!(input.length() == 1 && std::strchr("12345678", input[0])) || p_index < std::stoi(input))
+    {
+      std::system("clear");
+      std::cout << "\nInvalid index. Please enter the right index number." << std::endl;
       continue;
     }
-    else if(index < p_index)
+    index = std::stoi(input) - 1;
+    if(index < p_index)
     {
-      print_columns();
-      std::cout << "| " << index << ". ";
-      std::cout << " | " << shorten_string(this->p_contact[index].get_first_name());
-      std::cout << " | " << shorten_string(this->p_contact[index].get_last_name());
-      std::cout << " | " << shorten_string(this->p_contact[index].get_nickname());
-      std::cout << std::endl;
+      std::system("clear");
+      std::cout << "First Name: " << this->p_contact[index].get_first_name() << "\n";
+      std::cout << "Last Name: " << this->p_contact[index].get_last_name() << "\n";
+      std::cout << "Nickname: " << this->p_contact[index].get_nickname() << "\n";
+      std::cout << "Phone number: " << this->p_contact[index].get_phonenumber() << "\n";
+      std::cout << "Darkest secret: " << this->p_contact[index].get_darkest_secret() << "\n";
       break;
     }
   }
@@ -118,49 +116,14 @@ void Phonebook::print_contacts(void)
   print_columns();
   for(int i = 0; i < limit; i++)
   {
-    std::cout << "|" << i << ".        ";
+    std::cout << "|        " << i+1 << ".";
     std::cout << "|" << shorten_string(this->p_contact[i].get_first_name());
     std::cout << "|" << shorten_string(this->p_contact[i].get_last_name());
     std::cout << "|" << shorten_string(this->p_contact[i].get_nickname()) << "|";
-    // Waiting for my villain arc to uncomment this:
-    // std::cout << " |" << this->p_contact[i].get_darkest_secret() << " |";
+    std::cout << "\n---------------------------------------------";
     std::cout << std::endl;
   }
 
   return;
 }
 
-// Helper function to truncate strings.
-std::string shorten_string(std::string str)
-{
-  std::string result; 
-  int len;
-
-  len = str.length();
-  if(len < 10)
-  {
-    result = str;
-    len = 10 - len;
-    while((len--) > 0)
-      result = result + " ";
-  }
-  else
-    result = str.substr(0, 9) + ".";
-  return (result);
-}
-
-// Helper function to print columns
-void print_columns(void)
-{ 
-  std::cout << "*********************************************";
-  std::cout << std::endl;
-  std::cout << "|  Index   |";
-  std::cout << "First name|";
-  std::cout << "Last name |";
-  std::cout << " Nickname |";
-  std::cout << std::endl;
-  std::cout << "*********************************************";
-  std::cout << std::endl;
-
-  return;
-}
