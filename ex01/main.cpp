@@ -23,18 +23,20 @@ int main (void)
   std::system("clear");
   while(1)
   {
-    input = ask("\nEnter ADD or SEARCH or EXIT\nInput: ");
+    colorprint("\nEnter \"ADD\", \"SEARCH\" or \"EXIT\"", BLUE);
+    input = ask("Input: ");
     if (input == "ADD")
       phonebook.add_contact();
     else if (input == "SEARCH")
       phonebook.search_contact();
     else if(input == "EXIT")
     {
-      std::cout << "Exiting..." << std::endl;
+      std::cout << ITALIC << GREEN << "\nFinally! Inner peace..." << RESET;
+      colorprint("\nExiting ...", GREEN);
       break;
     }
     else 
-      std::cout << "Invalid input. Please try again\n";
+      colorprint("I am not a genie! Please enter one of the 3 commands provided!", ORANGE);
   }
   return (0);
 }

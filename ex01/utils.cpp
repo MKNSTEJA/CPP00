@@ -59,13 +59,13 @@ std::string ask(std::string prompt)
   {
     if(!std::getline(std::cin, input))
     {
-      std::cout << "Input error detected. Exiting..." << std::endl;
+      colorprint("RIP. You shouldn't have done that.\nExiting...", RED);
       std::cin.clear();
       exit(-1);
     }
     if(input.empty())
     {
-      std::cout << "Fields cannot be empty. Please give a valid input" << std::endl;
+      colorprint("Input cannot be empty. Please give a valid input", ORANGE);
       std::cout << prompt;
       continue;
     }
@@ -83,11 +83,11 @@ std::string check_phonenumber()
   
   while(true)
   {
-    input = ask("Phone number: "); 
+    input = ask(YELLOW + "Phone number: " + RESET); 
     size_t len = input.length();
     if(input.empty() || len < 3 || ((input[0] != '+') && !std::isdigit(input[0])))
     {
-      std::cout << "Please give a valid phonenumber" << std::endl;
+      colorprint("Please enter a valid phonenumber", ORANGE);
       continue;
     }
     for (size_t i = 0; i < len; ++i)
@@ -96,7 +96,7 @@ std::string check_phonenumber()
         continue;
       else if (!std::isdigit(input[i]))
       {
-        std::cout << "Please give a valid phonenumber" << std::endl;
+        colorprint("Please enter a valid phonenumber", ORANGE);
         break;
       }
       else if(i == len - 1)
@@ -106,3 +106,14 @@ std::string check_phonenumber()
 
   return ("");
 }
+
+void colorprint(std::string str, const std::string color)
+{
+  if(color == RED || color == ORANGE)
+    std::cout << color << "\n[ERROR]: " << str << RESET << std::endl;
+  else if(color == YELLOW)
+    std::cout << color << str << RESET;
+  else
+    std::cout << color << str << RESET << std::endl;
+}
+

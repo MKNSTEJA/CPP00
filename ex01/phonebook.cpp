@@ -37,11 +37,11 @@ void Phonebook::add_contact(void)
   std::string first_name, last_name, nickname, phonenumber, darkest_secret;
 
   // Get info from user
-  first_name = ask("\nFirst name: ");
-  last_name = ask("Last name: ");
-  nickname = ask("Nickname: ");
+  first_name = ask(YELLOW + "\nFirst name: " + RESET);
+  last_name = ask(YELLOW + "Last name: " + RESET);
+  nickname = ask(YELLOW + "Nickname: " + RESET);
   phonenumber = check_phonenumber();
-  darkest_secret = ask("Darkest secret: ");
+  darkest_secret = ask(YELLOW + "Darkest secret: " + RESET);
 
   // Assign info to the respective contact
   p_contact[i].save_first_name(first_name);
@@ -59,6 +59,7 @@ void Phonebook::add_contact(void)
     this->p_index = 0;
   }
   std::system("clear");
+  colorprint("Cookiess... (*coughs).. ahem sorry I mean Contact saved!", GREEN);
 }
 
 // Search contacts
@@ -84,18 +85,23 @@ void Phonebook::search_contact(void)
     if(!(input.length() == 1 && std::strchr("12345678", input[0])) || p_index < std::stoi(input))
     {
       std::system("clear");
-      std::cout << "\nInvalid index. Please enter the right index number." << std::endl;
+      colorprint("Invalid index. Please enter right index number.", ORANGE);
       continue;
     }
     index = std::stoi(input) - 1;
     if(index < p_index)
     {
       std::system("clear");
-      std::cout << "First Name: " << this->p_contact[index].get_first_name() << "\n";
-      std::cout << "Last Name: " << this->p_contact[index].get_last_name() << "\n";
-      std::cout << "Nickname: " << this->p_contact[index].get_nickname() << "\n";
-      std::cout << "Phone number: " << this->p_contact[index].get_phonenumber() << "\n";
-      std::cout << "Darkest secret: " << this->p_contact[index].get_darkest_secret() << "\n";
+      colorprint("First Name: ", YELLOW);
+      std::cout << this->p_contact[index].get_first_name() << "\n";
+      colorprint("Last Name: ", YELLOW);
+      std::cout << this->p_contact[index].get_last_name() << "\n";
+      colorprint("Nickname: ", YELLOW);
+      std::cout << this->p_contact[index].get_nickname() << "\n";
+      colorprint("Phone number: ", YELLOW);
+      std::cout << this->p_contact[index].get_phonenumber() << "\n";
+      colorprint("Darkest secret: ", YELLOW);
+      std::cout << this->p_contact[index].get_darkest_secret() << "\n";
       break;
     }
   }
