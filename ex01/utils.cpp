@@ -107,6 +107,7 @@ std::string check_phonenumber()
   return ("");
 }
 
+// Adds colours to text while printing.
 void colorprint(std::string str, const std::string color)
 {
   if(color == RED || color == ORANGE)
