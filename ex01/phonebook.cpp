@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "phonebook.hpp"
+# include "PhoneBook.hpp"
 # include <cstring>
 # include <ostream>
 # include <string>
-# include "utils.hpp"
+# include "Utils.hpp"
 
 // Constructor
 Phonebook::Phonebook()

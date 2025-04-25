@@ -12,7 +12,7 @@
 
 # include <iostream>
 # include <string.h>
-# include "contacts.hpp"
+# include "Contacts.hpp"
 
 # ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "contacts.hpp"
+# include "Contacts.hpp"
 
 // Constructor
 Contacts::Contacts(void)

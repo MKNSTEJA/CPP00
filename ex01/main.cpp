@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "phonebook.hpp"
-# include "contacts.hpp"
-# include "utils.hpp"
+# include "PhoneBook.hpp"
+# include "Contacts.hpp"
+# include "Utils.hpp"
 #include <cstdlib>
 
 int main (void)

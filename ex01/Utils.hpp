@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "phonebook.hpp"
-# include "contacts.hpp"
+# include "PhoneBook.hpp"
+# include "Contacts.hpp"
 
 # ifndef UTILS_HPP
 # define UTILS_HPP
